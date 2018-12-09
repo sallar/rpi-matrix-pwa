@@ -1,3 +1,7 @@
+* {
+  -webkit-user-select: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -8,7 +12,90 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  font-size: 1rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.app header {
+  height: 60px;
+  color: #00FCA6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.app-canvas {
+  flex: 0;
+  padding: .5rem .5rem 2rem;
+  border-bottom: 1px solid #333;
+}
+
+.app-canvas canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.app-views {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-views li {
+  border-left: 5px solid transparent;
+}
+
+.app-views li.active {
+  border-left-color: #00FCA6;
+}
+
+.app-views li button {
+  display: block;
+  padding: 1rem;
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #333;
+  background-color: transparent;
+  color: #00FCA6;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-views li button:active {
+  background-color: #00FCA6;
+  color: #000;
+}
+
+.app-nextview {
+  background-color: #00FCA6;
+  color: #000;
+  border: none;
+  outline: none;
+  padding: 1.2rem 0;
+  border-radius: .5rem;
+  margin: .5rem .5rem 1.5rem;
 }
