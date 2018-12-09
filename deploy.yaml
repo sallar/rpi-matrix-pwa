@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: led-matrix-deployment
+  labels:
+    app: led-matrix
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: led-matrix
+  template:
+    metadata:
+      labels:
+        app: led-matrix
+    spec:
+      containers:
+      - name: led-matrix
+        image: sallar/led-matrix:0.1.0
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: led-matrix-service
+spec:
+  selector:
+    app: led-matrix
+  ports:
+  - name: http
+    port: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: led-matrix-routing
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: led-matrix.mars.kaboli.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: led-matrix-service
+          servicePort: 80
