@@ -1,4 +1,4 @@
-const API = "https://minisallar.asuscomm.com:5000/api/data";
+const API = "https://minisallar.asuscomm.com:5000/api";
 
 export const getScreenData = () => fetch(`${API}/data`).then(res => res.json());
 export const getViews = () => fetch(`${API}/views`).then(res => res.json());
