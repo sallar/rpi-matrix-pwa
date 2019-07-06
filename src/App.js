@@ -40,10 +40,11 @@ class App extends Component {
   }
 
   async updateScreen() {
-    const data = await getScreenData();
+    const { data, currentView } = await getScreenData();
     this.setState(
       state => ({
         ...state,
+        currentViewIndex: currentView.index,
         data
       }),
       () => {
@@ -59,19 +60,6 @@ class App extends Component {
   }
 
   handleClick(index) {
-    this.setState(state => {
-      let nextIndex = index;
-      if (typeof nextIndex !== "number") {
-        nextIndex = state.currentViewIndex + 1;
-        if (nextIndex >= state.views.length) {
-          nextIndex = 0;
-        }
-      }
-      return {
-        ...state,
-        currentViewIndex: nextIndex
-      };
-    });
     changeView(index);
   }
 
